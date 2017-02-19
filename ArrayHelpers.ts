@@ -17,7 +17,7 @@ export abstract class ArrayHelpers {
    */
   public static Find(element: any, arr: any[]): any[] {
     let result: any[] = arr.filter((a) => {
-      return JSON.stringify(a) === JSON.stringify(element);
+      return ObjectHelpers.Equals(a, element);
     })
 
     return result;
@@ -37,7 +37,7 @@ export abstract class ArrayHelpers {
    */
   public static IndexOf(element: any, arr: any[]): number {
     for(let i = 0; i < arr.length; i++) {
-      if(JSON.stringify(arr[i]) === JSON.stringify(element)) return i;
+      if(ObjectHelpers.Equals(arr[i], element)) return i;
     }
 
     return -1;
