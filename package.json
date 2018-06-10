@@ -1,0 +1,23 @@
+{
+  "name": "typescript-helpers",
+  "version": "1.0.0",
+  "description": "Complementos para Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9Brothers/TypescriptHelpers.git"
+  },
+  "author": "Heber Teixeira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/9Brothers/TypescriptHelpers/issues"
+  },
+  "homepage": "https://github.com/9Brothers/TypescriptHelpers#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.3.2",
+    "jquery": "^3.3.1"
+  }
+}
