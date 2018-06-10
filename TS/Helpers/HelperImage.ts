@@ -1,19 +1,18 @@
 import * as $ from "jquery";
 
-namespace TS.Helpers {
-  export abstract class Image {
+export abstract class HelperImage {
 
-    public Resize(maxWidth: number = 1000, maxHeight: number = 1000, format: string = "jpg"): JQueryDeferred<string> {
+  public static Resize(maxWidth: number = 1000, maxHeight: number = 1000, file: File, format: string = "jpg"): JQueryDeferred<string> {
 
-      let reader = new FileReader();
+    let deferred: JQueryDeferred<string> = $.Deferred();
 
-      let deferred: JQueryDeferred<string> = $.Deferred();
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let img = document.createElement("img");
 
-      reader.onload = (e) => {
-        let img = document.createElement("img");
+      img.src = e.target.result;
 
-        img.src = e.target.result;
-
+      img.onload = () => {
         let canvas = document.createElement("canvas");
 
         let ctx = canvas.getContext("2d");
@@ -42,18 +41,20 @@ namespace TS.Helpers {
 
         try {
           ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, width, height);  
+          ctx.drawImage(img, 0, 0, width, height);
 
           let dataUrl = canvas.toDataURL(`image/${format}`);
 
           deferred.resolve(dataUrl)
         } catch (error) {
-          
+
           deferred.reject(error);
         }
-      }
-
-      return deferred;
+      };
     }
+
+    reader.readAsDataURL(file);
+
+    return deferred;
   }
 }
